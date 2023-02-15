@@ -12,6 +12,10 @@ import java.util.List;
 @RequestMapping("/api/v1/customer")
 public class CustomerController {
 
+    @RequestMapping("/test")
+    public String testController() {
+        return "sikerult";
+    }
     private final CustomerService service;
 
     public CustomerController(CustomerService service) {
@@ -20,8 +24,9 @@ public class CustomerController {
 
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createCustomer(@RequestBody CustomerRequest customerRequest){
+    public String createCustomer(@RequestBody CustomerRequest customerRequest){
         service.createProduct(customerRequest);
+        return customerRequest.getName();
     }
 
     @GetMapping("/getAll")
