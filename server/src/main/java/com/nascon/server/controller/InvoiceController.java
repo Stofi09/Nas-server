@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/order")
+@RequestMapping("/api/v1/invoice")
 public class InvoiceController {
 
     @RequestMapping("/test")
@@ -24,9 +24,9 @@ public class InvoiceController {
 
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
-    public String createOrder(@RequestBody InvoiceRequest invoiceRequest){
+    public int createOrder(@RequestBody InvoiceRequest invoiceRequest){
         service.createOrder(invoiceRequest);
-        return "orderRequest.toString();";
+        return invoiceRequest.getOrderNumber();
     }
 
     @GetMapping("/getAll")
