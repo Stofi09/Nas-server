@@ -35,7 +35,7 @@ public class CustomerIntegrationTest {
         CustomerRequest request = new CustomerRequest("name");
 
         ResponseEntity<String> postResponse = restTemplate.postForEntity(new URL("http://localhost:" + port + "/api/v1/customer/").toURI(),request,String.class);
-        assertEquals("name", postResponse.getBody());
+        assertEquals("201 CREATED", postResponse.getStatusCode().toString());
 
         ResponseEntity<List> response = restTemplate.getForEntity(new URL("http://localhost:" + port + "/api/v1/customer/getAll").toString(), List.class);
         assertEquals(1, response.getBody().size());

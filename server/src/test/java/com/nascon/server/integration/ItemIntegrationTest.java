@@ -31,7 +31,7 @@ public class ItemIntegrationTest {
     @Test
     public void ItemController() throws Exception {
         ResponseEntity<String> postResponse = restTemplate.postForEntity(new URL("http://localhost:" + port + "/api/v1/item/").toURI(),request,String.class);
-        assertEquals("name", postResponse.getBody());
+        assertEquals("201 CREATED", postResponse.getStatusCode().toString());
 
         ResponseEntity<List> response = restTemplate.getForEntity(new URL("http://localhost:" + port + "/api/v1/item/getAll").toString(), List.class);
         assertEquals(1, response.getBody().size());

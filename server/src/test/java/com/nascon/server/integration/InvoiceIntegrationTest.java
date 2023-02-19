@@ -27,12 +27,13 @@ public class InvoiceIntegrationTest {
     private static InvoiceRequest request;
     @BeforeAll
     static void setup(){
-        request= new InvoiceRequest(2,"customer");
+
+        request= new InvoiceRequest(2,2L);
     }
     @Test
     public void InvoiceController() throws Exception {
         ResponseEntity<String> postResponse = restTemplate.postForEntity(new URL("http://localhost:" + port + "/api/v1/invoice/").toURI(),request,String.class);
-        assertEquals("2", postResponse.getBody().toString());
+        assertEquals("201 CREATED", postResponse.getStatusCode().toString());
 
         ResponseEntity<List> response = restTemplate.getForEntity(new URL("http://localhost:" + port + "/api/v1/invoice/getAll").toString(), List.class);
         assertEquals(1, response.getBody().size());
