@@ -36,4 +36,7 @@ public class CustomerService {
                 .name(customer.getName())
                 .build();
     }
+    public Customer getCustomerById(Long Id){
+        return repository.getCustomerById(Id);
+    }
 }

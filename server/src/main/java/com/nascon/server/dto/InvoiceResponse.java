@@ -1,5 +1,6 @@
 package com.nascon.server.dto;
 
+import com.nascon.server.model.Customer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,5 +14,5 @@ public class InvoiceResponse {
     private Long Id;
 
     private int orderNumber;
-    private String customer;
+    private Customer customer;
 }

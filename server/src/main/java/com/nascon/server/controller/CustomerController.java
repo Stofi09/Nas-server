@@ -26,7 +26,7 @@ public class CustomerController {
     @ResponseStatus(HttpStatus.CREATED)
     public String createCustomer(@RequestBody CustomerRequest customerRequest){
         service.createProduct(customerRequest);
-        return customerRequest.getName();
+        return "service.findById()";
     }
 
     @GetMapping("/getAll")
