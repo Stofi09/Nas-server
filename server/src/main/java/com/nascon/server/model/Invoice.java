@@ -1,10 +1,12 @@
 package com.nascon.server.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Builder
 @Entity
@@ -16,6 +18,17 @@ public class Invoice {
     private int orderNumber;
     @ManyToOne
     private Customer customer;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "invoice")
+    private List<Item> Item;
+
+    public Invoice(Long id, int orderNumber, Customer customer, List<com.nascon.server.model.Item> item) {
+        Id = id;
+        this.orderNumber = orderNumber;
+        this.customer = customer;
+        Item = item;
+    }
 
     public Invoice(Long id, int orderNumber, Customer customer) {
         Id = id;
@@ -43,5 +56,13 @@ public class Invoice {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public List<Item> getItem() {
+        return Item;
+    }
+
+    public void setItem(List<Item> item) {
+        Item = item;
     }
 }
